@@ -1,0 +1,17 @@
+{
+  "name": "server1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tunnel": "vk-tunnel  --insecure=1 --http-protocol=http --ws-protocol=ws --host=0.0.0.0 --port=3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vkontakte/vk-tunnel": "github:VKCOM/vk-tunnel-client#pavelnikitin/test/vk-tunnel-release",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.4"
+  }
+}
