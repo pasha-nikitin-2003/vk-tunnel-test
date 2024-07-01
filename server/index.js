@@ -6,17 +6,12 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-app.get('/', (_, res) => {
-  console.log("FUNNY")
-  res.send("HELLO FROM SERVER - HTTP");
-});
-
 io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('message', (msg) => {
-    console.log('message: ' + msg);
-    socket.emit('message', "HELLO FROM SERVER - WS");
+    console.log("Message from server: ", msg)
+    socket.emit('message', Buffer.from([0x00, 0x01, 0x02, 0x03]));
   });
 
   socket.on('disconnect', () => {

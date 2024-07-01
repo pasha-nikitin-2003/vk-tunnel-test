@@ -1,20 +1,7 @@
-const TUNNEL_URL = 'https://user521509297-rtayg7hr.wormhole.vk-apps.com/'
-const WSS_URL = 'wss://user521509297-rtayg7hr.wormhole.vk-apps.com/'
+// SERVER-URL 'http://localhost:3000'
 
-async function sendHttpRequest() {
-  try {
-    const response = await fetch(TUNNEL_URL)
-    const data = await response.text()
-    console.log(`Статус код ответа от HTTP сервера: ${response.status}`)
-    console.log(`Полученные данные от HTTP сервера: ${data}`)
-  } catch (error) {
-    console.error(
-      `Произошла ошибка при отправке HTTP запроса: ${error.message}`
-    )
-  }
-}
-
-setInterval(sendHttpRequest, 5000)
+// Вставь сюда свой https адрес от туннеля 
+const WSS_URL = 'https://user521509297-gvkluqcd.wormhole.vk-apps.com/'
 
 const io = require('socket.io-client')
 
@@ -22,7 +9,9 @@ const socket = io(WSS_URL)
 
 socket.on('connect', () => {
   console.log('Connected to server')
-  setInterval(() => socket.emit('message', 'Hello from client'), 2000)
+  setInterval(() => {
+    socket.emit('message', Buffer.from([0x00, 0x01, 0x02, 0x03]))
+  }, 2000)
 })
 
 socket.on('message', (msg) => {
